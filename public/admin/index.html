@@ -4,12 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Painel Sveltia</title>
-    <!-- Carrega o script do Sveltia -->
-    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js" type="module"></script>
-  </head>
-  <body>
+
     <script>
-      // A configuração pura que funcionou da primeira vez, já com os campos novos alinhados com o Astro
+      // 1. Injetamos a configuração na memória ANTES de qualquer outra coisa carregar.
+      // Isso blinda o CMS e impede que ele tente buscar arquivos .yml externos no servidor.
       window.CMS_CONFIG = {
         backend: {
           name: "github",
@@ -43,5 +41,10 @@
         ]
       };
     </script>
+
+    <!-- 2. Agora sim, com a configuração já salva na memória, chamamos o CMS -->
+    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js" type="module"></script>
+  </head>
+  <body>
   </body>
 </html>
