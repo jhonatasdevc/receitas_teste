@@ -5,15 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Painel Sveltia</title>
 
-    <!-- 🌟 O PULO DO GATO: Essa meta tag diz ao Sveltia para NÃO procurar um arquivo config.yml -->
     <meta name="cms-config-url" content="" />
 
-    <!-- Carrega o script do Sveltia -->
     <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js" type="module"></script>
   </head>
   <body>
     <script>
-      // Injetamos a configuração direto na janela global
+      // Injetamos a configuração direto na janela global do navegador
       window.CMS_CONFIG = {
         backend: {
           name: "github",
