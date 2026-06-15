@@ -1,35 +1,68 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Painel Sveltia</title>
-    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js" type="module"></script>
-  </head>
-  <body>
-    <script>
-      // Ele inicia sozinho se encontrar a configuração em memória
-      window.CMS_CONFIG = {
-        backend: {
-          name: "github",
-          repo: "jhonatasdevc/receitas_teste",
-          branch: "main"
-        },
-        media_folder: "public/images",
-        public_folder: "/images",
-        collections: [
-          {
-            name: "blog",
-            label: "Blog de Teste",
-            folder: "src/content/blog",
-            create: true,
-            fields: [
-              { label: "Título", name: "title", widget: "string" },
-              { label: "Corpo", name: "body", widget: "markdown" }
-            ]
-          }
-        ]
-      };
-    </script>
-  </body>
-</html>
+local_backend: true
+
+logo_url: /logo.svg
+
+backend:
+    name: "github"
+    repo: jhonatasdevc/receitas_teste
+    branch: main
+    base_url: https://cms.majestico.workers.dev
+    automatic_deployments: false
+
+media_folder: "public/images"
+public_folder: "/images"
+
+i18n:
+    structure: "multiple_folders"
+    locales: ["en", "it"]
+    default_locale: "en"
+
+collections:
+    - name: "posts"
+      i18n: true
+      label: "Blog Posts"
+      folder: "src/content/blog"
+      create: true
+      delete: true
+      fields:
+          - name: "title"
+            widget: "string"
+            label: "Post Title"
+            i18n: true
+          - label: "Draft"
+            name: "draft"
+            widget: "boolean"
+            i18n: "duplicate"
+          - label: "Author"
+            name: "author"
+            widget: "string"
+            i18n: "duplicate"
+          - label: "Tags"
+            name: "tags"
+            widget: "list"
+            i18n: true
+          - label: "Image"
+            name: "image"
+            widget: "object"
+            i18n: true
+            fields:
+                - { label: Source, name: src, widget: image, i18n: "duplicate" }
+                - { label: Alt Text, name: alt, widget: string, i18n: true }
+          - label: "Snippet"
+            name: "snippet"
+            widget: "text"
+            i18n: true
+          - label: "Publish Date"
+            name: "publishDate"
+            widget: "datetime"
+            format: "YYYY-MM-DD HH:mm"
+            i18n: "duplicate"
+          - label: "Category"
+            name: "category"
+            widget: "select"
+            options: ["Tutorials", "News", "Reviews", "Frameworks"]
+            i18n: "duplicate"
+          - name: "body"
+            widget: "markdown"
+            label: "Post Body"
+            i18n: true
