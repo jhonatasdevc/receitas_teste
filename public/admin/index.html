@@ -4,9 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Painel Sveltia</title>
-
+    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js" type="module"></script>
+  </head>
+  <body>
     <script>
-      // Criamos a configuração imediatamente na janela global
       window.CMS_CONFIG = {
         backend: {
           name: "github",
@@ -18,12 +19,14 @@
         collections: [
           {
             name: "blog",
-            label: "Blog de Teste",
+            label: "Minhas Receitas",
             folder: "src/content/blog",
             create: true,
             format: "frontmatter", 
             fields: [
-              { label: "Título", name: "title", widget: "string" },
+              { label: "Título da Receita", name: "title", widget: "string" },
+              
+              // 🌟 CORREÇÃO 1: Mudamos o name para 'pubDate' e o formato para string YYYY-MM-DD
               { 
                 label: "Data de Publicação", 
                 name: "pubDate", 
@@ -32,17 +35,16 @@
                 date_format: "YYYY-MM-DD", 
                 time_format: false 
               },
+              
+              // 🌟 CORREÇÃO 2: Garantimos que o campo description seja obrigatório para não bugar o Astro
               { label: "Descrição Curta", name: "description", widget: "string", required: true },
+              
               { label: "Imagem em Destaque", name: "image", widget: "image", required: false },
-              { label: "Corpo", name: "body", widget: "markdown" }
+              { label: "Modo de Preparo / Ingredientes", name: "body", widget: "markdown" }
             ]
           }
         ]
       };
     </script>
-
-    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
-  </head>
-  <body>
   </body>
 </html>
