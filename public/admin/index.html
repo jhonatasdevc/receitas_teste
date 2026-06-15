@@ -4,32 +4,45 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Painel Sveltia</title>
-    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js" type="module"></script>
-  </head>
-  <body>
+
     <script>
-      // Ele inicia sozinho se encontrar a configuração em memória
+      // Criamos a configuração imediatamente na janela global
       window.CMS_CONFIG = {
         backend: {
           name: "github",
           repo: "jhonatasdevc/receitas_teste",
           branch: "main"
         },
-        media_folder: "public/images",
-        public_folder: "/images",
+        media_folder: "public/images/uploads",
+        public_folder: "/images/uploads",
         collections: [
           {
             name: "blog",
             label: "Blog de Teste",
             folder: "src/content/blog",
             create: true,
+            format: "frontmatter", 
             fields: [
               { label: "Título", name: "title", widget: "string" },
+              { 
+                label: "Data de Publicação", 
+                name: "pubDate", 
+                widget: "datetime", 
+                format: "YYYY-MM-DD", 
+                date_format: "YYYY-MM-DD", 
+                time_format: false 
+              },
+              { label: "Descrição Curta", name: "description", widget: "string", required: true },
+              { label: "Imagem em Destaque", name: "image", widget: "image", required: false },
               { label: "Corpo", name: "body", widget: "markdown" }
             ]
           }
         ]
       };
     </script>
+
+    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+  </head>
+  <body>
   </body>
 </html>
