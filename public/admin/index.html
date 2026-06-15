@@ -8,39 +8,24 @@
   </head>
   <body>
     <script>
+      // Ele inicia sozinho se encontrar a configuração em memória
       window.CMS_CONFIG = {
         backend: {
           name: "github",
           repo: "jhonatasdevc/receitas_teste",
           branch: "main"
         },
-        media_folder: "public/images/uploads",
-        public_folder: "/images/uploads",
+        media_folder: "public/images",
+        public_folder: "/images",
         collections: [
           {
             name: "blog",
-            label: "Minhas Receitas",
+            label: "Blog de Teste",
             folder: "src/content/blog",
             create: true,
-            format: "frontmatter", 
             fields: [
-              { label: "Título da Receita", name: "title", widget: "string" },
-              
-              // 🌟 CORREÇÃO 1: Mudamos o name para 'pubDate' e o formato para string YYYY-MM-DD
-              { 
-                label: "Data de Publicação", 
-                name: "pubDate", 
-                widget: "datetime", 
-                format: "YYYY-MM-DD", 
-                date_format: "YYYY-MM-DD", 
-                time_format: false 
-              },
-              
-              // 🌟 CORREÇÃO 2: Garantimos que o campo description seja obrigatório para não bugar o Astro
-              { label: "Descrição Curta", name: "description", widget: "string", required: true },
-              
-              { label: "Imagem em Destaque", name: "image", widget: "image", required: false },
-              { label: "Modo de Preparo / Ingredientes", name: "body", widget: "markdown" }
+              { label: "Título", name: "title", widget: "string" },
+              { label: "Corpo", name: "body", widget: "markdown" }
             ]
           }
         ]
