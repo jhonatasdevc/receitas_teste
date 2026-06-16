@@ -25,7 +25,7 @@
         },
         { "label": "Descrição Curta", "name": "description", "widget": "string", "required": true },
         { "label": "Imagem em Destaque", "name": "heroImage", "widget": "image", "required": false },
-        { "label": "Modo de Preparo / Ingredientes", name: "body", widget: "markdown" }
+        { "label": "Modo de Preparo / Ingredientes", "name": "body", "widget": "markdown" }
       ]
     }
   ]
